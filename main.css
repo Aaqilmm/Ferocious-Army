@@ -16,6 +16,29 @@
     --neon-red: #ff4d2e;
     --neon-cyan: #00d4ff;
     --transition: all 0.3s ease;
+    --overlay-color: rgba(10, 15, 28, 0.85);
+}
+
+/* ===========================
+   SECTION BACKGROUND BLEND
+   =========================== */
+.section-bg {
+    position: relative;
+    background: center/cover no-repeat;
+}
+
+.section-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--overlay-color);
+    backdrop-filter: blur(4px);
+    z-index: 0;
+}
+
+.section-bg > * {
+    position: relative;
+    z-index: 1;
 }
 
 /* ===========================
@@ -139,12 +162,17 @@ a:hover {
 /* ===========================
    HERO SECTION
    =========================== */
-.hero {
-    min-height: 70vh;
+.hero-section {
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+        url('../images/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     text-align: center;
     padding: 4rem 2rem;
 }
@@ -275,12 +303,27 @@ a:hover {
    DISCORD SECTION
    =========================== */
 .discord-section {
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255, 154, 0, 0.05) 100%);
+    position: relative;
+    background:
+        linear-gradient(rgba(10, 14, 39, 0.72), rgba(10, 14, 39, 0.82)),
+        url('../images/hero2.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.discord-section h2 {
+/* Discord heading — punchy gaming style */
+.discord-heading {
     text-align: center;
     margin-bottom: 3rem;
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 2.6rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--neon-orange);
+    -webkit-text-fill-color: var(--neon-orange);
+    background: none;
+    text-shadow: 0 0 14px rgba(255, 154, 0, 0.5);
 }
 
 .discord-content {
@@ -291,38 +334,30 @@ a:hover {
 }
 
 .discord-card {
-    background: linear-gradient(135deg, var(--bg-tertiary) 0%, rgba(255, 154, 0, 0.1) 100%);
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, rgba(0, 212, 255, 0.07) 100%);
     border-radius: 12px;
     overflow: hidden;
-    border: 2px solid var(--border-color);
-    box-shadow: 0 0 40px rgba(255, 154, 0, 0.2);
+    border: 2px solid rgba(0, 212, 255, 0.25);
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.12);
     transition: var(--transition);
 }
 
 .discord-card:hover {
-    border-color: var(--neon-orange);
-    box-shadow: 0 0 60px rgba(255, 154, 0, 0.4);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
     transform: translateY(-5px);
 }
 
+/* Banner image from hero2.jpeg */
 .discord-card-header {
     width: 100%;
-    height: 150px;
-    background: linear-gradient(135deg, rgba(255, 154, 0, 0.2), rgba(255, 77, 46, 0.2));
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 160px;
+    background:
+        url('../images/hero2.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-bottom: 2px solid var(--border-color);
-}
-
-.discord-icon {
-    font-size: 4rem;
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
 }
 
 .discord-card-body {
@@ -335,11 +370,27 @@ a:hover {
     margin-bottom: 1rem;
 }
 
+/* Gaming font on the card name */
+.discord-card-name {
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--neon-orange);
+    text-shadow: 0 0 10px rgba(255, 154, 0, 0.4);
+    margin-bottom: 1rem;
+}
+
 .discord-stats {
     display: flex;
     gap: 2rem;
     margin-bottom: 1.5rem;
     flex-wrap: wrap;
+    background: rgba(0, 212, 255, 0.06);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
 }
 
 .stat {
@@ -359,16 +410,9 @@ a:hover {
 
 .discord-description-text {
     color: var(--text-secondary);
-    line-height: 1.7;
-    font-size: 0.95rem;
-}
-
-.discord-btn {
-    display: block;
-    margin: 0 2rem 2rem 2rem;
-    text-align: center;
-    width: calc(100% - 4rem);
-    border-radius: 8px;
+    line-height: 1.65;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
 }
 
 .discord-description h3 {
@@ -377,10 +421,24 @@ a:hover {
     margin-bottom: 1rem;
 }
 
+/* "Your Squad Awaits" heading — gaming font */
+.why-join-heading {
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--neon-orange) !important;
+    text-shadow: 0 0 14px rgba(255, 154, 0, 0.5);
+    -webkit-text-fill-color: var(--neon-orange);
+    background: none;
+    margin-bottom: 1rem;
+}
+
 .description-placeholder {
     min-height: 150px;
     padding: 2rem;
-    background: linear-gradient(135deg, rgba(255, 154, 0, 0.05), rgba(255, 77, 46, 0.05));
+    background: rgba(10, 14, 39, 0.8);
     border: 2px dashed var(--neon-orange);
     border-radius: 8px;
     display: flex;
@@ -394,46 +452,235 @@ a:hover {
 }
 
 /* ===========================
-   YOUTUBE SECTION
+   DISCORD JOIN BUTTON
+   =========================== */
+.discord-join-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    margin: 0 1.5rem 1.75rem 1.5rem;
+    width: calc(100% - 3rem);
+    padding: 0.8rem 1.5rem;
+    background: #5865F2;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.discord-join-btn:hover {
+    background: #4752c4;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 32px rgba(88, 101, 242, 0.65);
+}
+
+.discord-logo-icon {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.discord-join-btn:hover .discord-logo-icon {
+    transform: scale(1.15);
+}
+
+/* ===========================
+   ABOUT BOX (Discord Right Side)
+   =========================== */
+.about-box {
+    position: relative;
+    background: linear-gradient(160deg, rgba(0, 212, 255, 0.06) 0%, rgba(10, 14, 39, 0.92) 60%);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    box-shadow: 0 0 24px rgba(0, 212, 255, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.about-text-wrap {
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    max-height: 2000px;
+}
+
+.about-text-wrap.collapsed {
+    max-height: 120px;
+}
+
+.about-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+}
+
+.about-icon {
+    flex-shrink: 0;
+    margin-top: 3px;
+    opacity: 0.9;
+}
+
+.about-line p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.about-line strong {
+    color: #e0f7ff;
+    font-weight: 600;
+}
+
+.about-fade {
+    position: absolute;
+    bottom: 44px;
+    left: 0;
+    right: 0;
+    height: 55px;
+    background: linear-gradient(to bottom, transparent, rgba(10, 14, 39, 0.97));
+    border-radius: 0 0 12px 12px;
+    pointer-events: none;
+    display: none;
+}
+
+.read-more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    background: transparent;
+    border: none;
+    border-top: 1px solid rgba(0, 212, 255, 0.15);
+    color: rgba(0, 212, 255, 0.7);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s ease;
+    font-family: inherit;
+}
+
+.read-more-btn:hover {
+    color: var(--neon-cyan);
+}
+
+.read-more-btn svg {
+    transition: transform 0.3s ease;
+}
+
+/* ===========================
+   STAT ICON SVG
+   =========================== */
+.stat-icon-svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===========================
+   YOUTUBE CHANNEL SECTION
    =========================== */
 .youtube-section {
     background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(255, 77, 46, 0.05) 100%);
 }
 
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.video-card {
-    aspect-ratio: 16 / 9;
-    border-radius: 12px;
-    overflow: hidden;
+.yt-channel-block {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255, 0, 0, 0.08) 100%);
     border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 3rem;
     transition: var(--transition);
-    background-color: var(--bg-secondary);
 }
 
-.video-card iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+.yt-channel-block:hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.2);
 }
 
-.video-card:hover {
-    border-color: var(--neon-red);
-    box-shadow: 0 0 40px rgba(255, 77, 46, 0.3);
-    transform: translateY(-5px);
-}
-
-.video-card.placeholder {
+.yt-icon-wrap {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 50%;
+    border: 2px solid rgba(255, 0, 0, 0.3);
+}
+
+.yt-icon {
+    width: 56px;
+    height: auto;
+}
+
+.yt-text h3 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+}
+
+.yt-desc {
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+}
+
+.yt-subscribe-btn {
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    letter-spacing: 0.02em;
+}
+
+.yt-text {
+    flex: 1;
+}
+
+.yt-channel-logo {
+    flex-shrink: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 24px rgba(255, 0, 0, 0.35);
+    transition: var(--transition);
+}
+
+.yt-channel-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.yt-channel-block:hover .yt-channel-logo {
+    border-color: #ff0000;
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+    .yt-channel-logo {
+        width: 130px;
+        height: 130px;
+    }
 }
 
 /* ===========================
@@ -449,6 +696,19 @@ a:hover {
 .footer p {
     margin: 0;
     color: var(--text-secondary);
+}
+
+/* ===========================
+   NAVBAR LOGO — Gaming Font
+   =========================== */
+.navbar-logo a {
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--neon-orange);
+    text-shadow: 0 0 12px rgba(255, 154, 0, 0.5);
 }
 
 /* ===========================
@@ -482,8 +742,7 @@ a:hover {
     }
 
     .card-grid,
-    .image-grid,
-    .video-grid {
+    .image-grid {
         grid-template-columns: 1fr;
     }
 
@@ -497,12 +756,27 @@ a:hover {
         gap: 1rem;
     }
 
+    .yt-channel-block {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+        gap: 1.5rem;
+    }
+
+    .yt-desc {
+        max-width: 100%;
+    }
+
     .container {
         padding: 0 1rem;
     }
 
     .section {
         padding: 3rem 0;
+    }
+
+    .discord-heading {
+        font-size: 1.8rem;
     }
 }
 
@@ -534,11 +808,7 @@ a:hover {
     }
 
     .discord-card-header {
-        height: 100px;
-    }
-
-    .discord-icon {
-        font-size: 3rem;
+        height: 120px;
     }
 
     .section {
@@ -548,19 +818,48 @@ a:hover {
     .container {
         padding: 0 0.75rem;
     }
+
+    .discord-heading {
+        font-size: 1.4rem;
+    }
+}
+/* ===========================
+   REVIEWS SECTION
+   =========================== */
+.reviews-section {
+    background-color: var(--bg-secondary);
 }
 
-.hero-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
 
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
-    url('../images/hero.png');
+.review-card {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.review-card.placeholder {
+    background-color: var(--bg-tertiary);
+    border: 2px dashed var(--border-color);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+.review-card.placeholder:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
 }
