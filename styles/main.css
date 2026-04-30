@@ -1,0 +1,865 @@
+/* ===========================
+   VARIABLES & THEME
+   =========================== */
+:root {
+    --bg-primary: #0a0e27;
+    --bg-secondary: #1a1f3a;
+    --bg-tertiary: #252d47;
+    --text-primary: #ffffff;
+    --text-secondary: #a0aec0;
+    --accent-primary: #ff9a00;
+    --accent-secondary: #ff4d2e;
+    --border-color: #2d3748;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --neon-orange: #ff9a00;
+    --neon-red: #ff4d2e;
+    --neon-cyan: #00d4ff;
+    --transition: all 0.3s ease;
+    --overlay-color: rgba(10, 15, 28, 0.85);
+}
+
+/* ===========================
+   SECTION BACKGROUND BLEND
+   =========================== */
+.section-bg {
+    position: relative;
+    background: center/cover no-repeat;
+}
+
+.section-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--overlay-color);
+    backdrop-filter: blur(4px);
+    z-index: 0;
+}
+
+.section-bg > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===========================
+   RESET & BASE
+   =========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===========================
+   TYPOGRAPHY
+   =========================== */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(90deg, var(--neon-orange), var(--neon-red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--accent-secondary);
+}
+
+/* ===========================
+   LAYOUT
+   =========================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section {
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section:last-of-type {
+    border-bottom: none;
+}
+
+/* ===========================
+   BUTTONS
+   =========================== */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--accent-primary);
+    color: #000000;
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(255, 154, 0, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: #ffb01a;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(255, 154, 0, 0.7);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--accent-primary);
+    border: 2px solid var(--accent-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-primary);
+    color: #000000;
+}
+
+/* ===========================
+   HERO SECTION
+   =========================== */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+        url('../images/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ===========================
+   LOGO SECTION
+   =========================== */
+.logo-section {
+    background-color: var(--bg-secondary);
+}
+
+.logo-placeholder {
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    background-color: var(--bg-tertiary);
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* ===========================
+   IMAGE GRID
+   =========================== */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.image-card {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-card.placeholder {
+    background-color: var(--bg-secondary);
+    border: 2px dashed var(--border-color);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+.image-card.placeholder:hover {
+    border-color: var(--neon-orange);
+    box-shadow: 0 0 20px rgba(255, 154, 0, 0.3);
+}
+
+/* ===========================
+   CARD GRID (Strategies)
+   =========================== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.strategy-card {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    display: block;
+    transition: var(--transition);
+    color: var(--text-primary);
+}
+
+.strategy-card:hover {
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, rgba(255, 154, 0, 0.1) 100%);
+    border-color: var(--accent-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(255, 154, 0, 0.2);
+}
+
+.strategy-card h3 {
+    color: var(--accent-primary);
+    margin-bottom: 0.5rem;
+}
+
+.strategy-card p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.strategy-card .arrow {
+    color: var(--accent-primary);
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+/* ===========================
+   DISCORD SECTION
+   =========================== */
+.discord-section {
+    position: relative;
+    background:
+        linear-gradient(rgba(10, 14, 39, 0.72), rgba(10, 14, 39, 0.82)),
+        url('../images/hero2.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Discord heading — punchy gaming style */
+.discord-heading {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 2.6rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--neon-orange);
+    -webkit-text-fill-color: var(--neon-orange);
+    background: none;
+    text-shadow: 0 0 14px rgba(255, 154, 0, 0.5);
+}
+
+.discord-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.discord-card {
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, rgba(0, 212, 255, 0.07) 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(0, 212, 255, 0.25);
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.12);
+    transition: var(--transition);
+}
+
+.discord-card:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+/* Banner image from hero2.jpeg */
+.discord-card-header {
+    width: 100%;
+    height: 160px;
+    background:
+        url('../images/hero2.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.discord-card-body {
+    padding: 2rem;
+}
+
+.discord-card-body h3 {
+    color: var(--neon-orange);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+/* Gaming font on the card name */
+.discord-card-name {
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--neon-orange);
+    text-shadow: 0 0 10px rgba(255, 154, 0, 0.4);
+    margin-bottom: 1rem;
+}
+
+.discord-stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    background: rgba(0, 212, 255, 0.06);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stat-icon {
+    font-size: 1.2rem;
+}
+
+.stat-text {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.discord-description-text {
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.discord-description h3 {
+    color: var(--neon-orange);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+/* "Your Squad Awaits" heading — gaming font */
+.why-join-heading {
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--neon-orange) !important;
+    text-shadow: 0 0 14px rgba(255, 154, 0, 0.5);
+    -webkit-text-fill-color: var(--neon-orange);
+    background: none;
+    margin-bottom: 1rem;
+}
+
+.description-placeholder {
+    min-height: 150px;
+    padding: 2rem;
+    background: rgba(10, 14, 39, 0.8);
+    border: 2px dashed var(--neon-orange);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.description-placeholder p {
+    text-align: center;
+}
+
+/* ===========================
+   DISCORD JOIN BUTTON
+   =========================== */
+.discord-join-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    margin: 0 1.5rem 1.75rem 1.5rem;
+    width: calc(100% - 3rem);
+    padding: 0.8rem 1.5rem;
+    background: #5865F2;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.discord-join-btn:hover {
+    background: #4752c4;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 32px rgba(88, 101, 242, 0.65);
+}
+
+.discord-logo-icon {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.discord-join-btn:hover .discord-logo-icon {
+    transform: scale(1.15);
+}
+
+/* ===========================
+   ABOUT BOX (Discord Right Side)
+   =========================== */
+.about-box {
+    position: relative;
+    background: linear-gradient(160deg, rgba(0, 212, 255, 0.06) 0%, rgba(10, 14, 39, 0.92) 60%);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    box-shadow: 0 0 24px rgba(0, 212, 255, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.about-text-wrap {
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    max-height: 2000px;
+}
+
+.about-text-wrap.collapsed {
+    max-height: 120px;
+}
+
+.about-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+}
+
+.about-icon {
+    flex-shrink: 0;
+    margin-top: 3px;
+    opacity: 0.9;
+}
+
+.about-line p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.about-line strong {
+    color: #e0f7ff;
+    font-weight: 600;
+}
+
+.about-fade {
+    position: absolute;
+    bottom: 44px;
+    left: 0;
+    right: 0;
+    height: 55px;
+    background: linear-gradient(to bottom, transparent, rgba(10, 14, 39, 0.97));
+    border-radius: 0 0 12px 12px;
+    pointer-events: none;
+    display: none;
+}
+
+.read-more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    background: transparent;
+    border: none;
+    border-top: 1px solid rgba(0, 212, 255, 0.15);
+    color: rgba(0, 212, 255, 0.7);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s ease;
+    font-family: inherit;
+}
+
+.read-more-btn:hover {
+    color: var(--neon-cyan);
+}
+
+.read-more-btn svg {
+    transition: transform 0.3s ease;
+}
+
+/* ===========================
+   STAT ICON SVG
+   =========================== */
+.stat-icon-svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===========================
+   YOUTUBE CHANNEL SECTION
+   =========================== */
+.youtube-section {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(255, 77, 46, 0.05) 100%);
+}
+
+.yt-channel-block {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255, 0, 0, 0.08) 100%);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 3rem;
+    transition: var(--transition);
+}
+
+.yt-channel-block:hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.2);
+}
+
+.yt-icon-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 50%;
+    border: 2px solid rgba(255, 0, 0, 0.3);
+}
+
+.yt-icon {
+    width: 56px;
+    height: auto;
+}
+
+.yt-text h3 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+}
+
+.yt-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+}
+
+.yt-subscribe-btn {
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    letter-spacing: 0.02em;
+}
+
+.yt-text {
+    flex: 1;
+}
+
+.yt-channel-logo {
+    flex-shrink: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 24px rgba(255, 0, 0, 0.35);
+    transition: var(--transition);
+}
+
+.yt-channel-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.yt-channel-block:hover .yt-channel-logo {
+    border-color: #ff0000;
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+    .yt-channel-logo {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+.footer {
+    background-color: var(--bg-secondary);
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 2px solid var(--neon-orange);
+}
+
+.footer p {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+/* ===========================
+   NAVBAR LOGO — Gaming Font
+   =========================== */
+.navbar-logo a {
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--neon-orange);
+    text-shadow: 0 0 12px rgba(255, 154, 0, 0.5);
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .card-grid,
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .discord-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .discord-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .yt-channel-block {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+        gap: 1.5rem;
+    }
+
+    .yt-desc {
+        max-width: 100%;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .section {
+        padding: 3rem 0;
+    }
+
+    .discord-heading {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .hero {
+        min-height: 50vh;
+        padding: 2rem 1rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .logo-placeholder,
+    .discord-placeholder {
+        height: 250px;
+    }
+
+    .discord-card-header {
+        height: 120px;
+    }
+
+    .section {
+        padding: 2rem 0;
+    }
+
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    .discord-heading {
+        font-size: 1.4rem;
+    }
+}
+/* ===========================
+   REVIEWS SECTION
+   =========================== */
+.reviews-section {
+    background-color: var(--bg-secondary);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.review-card {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-card.placeholder {
+    background-color: var(--bg-tertiary);
+    border: 2px dashed var(--border-color);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+.review-card.placeholder:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}
