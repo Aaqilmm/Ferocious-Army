@@ -1,14 +1,35 @@
 /* ===========================
-   NAVBAR STYLES
+   NAVBAR STYLES — Gaming RPG Theme (Blue Edition)
    =========================== */
 .navbar {
-    background-color: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-color);
+    background: 
+        linear-gradient(135deg, rgba(20, 20, 25, 0.85), rgba(30, 25, 20, 0.88)),
+        url('../images/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid transparent;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
+
+/* RPG-style gradient glowing bottom border — orange theme */
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), var(--neon-red), var(--accent-primary), transparent);
+    box-shadow: 0 0 12px rgba(255, 154, 0, 0.6), 0 0 24px rgba(255, 77, 46, 0.3);
+}
+
 
 .navbar-container {
     max-width: 1200px;
@@ -20,48 +41,121 @@
     height: 70px;
 }
 
+/* ===========================
+   LOGO
+   =========================== */
 .navbar-logo a {
-    font-size: 1.5rem;
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 1.85rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--neon-cyan);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 14px rgba(0, 212, 255, 0.5);
 }
 
 .navbar-logo a:hover {
     color: var(--accent-primary);
+    text-shadow: 0 0 24px rgba(255, 154, 0, 0.9), 0 0 40px rgba(255, 154, 0, 0.5);
 }
 
+/* ===========================
+   NAV MENU
+   =========================== */
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 2.5rem;
+    align-items: center;
 }
 
 .nav-link {
-    color: var(--text-secondary);
-    font-weight: 500;
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--neon-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     position: relative;
     transition: var(--transition);
+    padding: 0.5rem 0;
 }
 
 .nav-link:hover {
     color: var(--accent-primary);
+    text-shadow: 0 0 10px rgba(255, 154, 0, 0.5), 0 0 20px rgba(255, 154, 0, 0.3);
 }
 
 .nav-link.active {
     color: var(--accent-primary);
+    text-shadow: 0 0 15px rgba(255, 154, 0, 0.9), 0 0 30px rgba(255, 77, 46, 0.6);
 }
 
+
+/* Glowing gradient underline for active link */
 .nav-link.active::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -2px;
     left: 0;
     right: 0;
     height: 2px;
-    background-color: var(--accent-primary);
+    background: linear-gradient(90deg, transparent, var(--accent-primary), var(--neon-red), transparent);
+    box-shadow: 0 0 8px rgba(255, 154, 0, 0.6);
+    border-radius: 2px;
+}
+
+
+/* Hover underline effect */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    right: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+    opacity: 0;
+}
+
+.nav-link:hover::before {
+    left: 0;
+    right: 0;
+    opacity: 1;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    box-shadow: 0 0 8px rgba(255, 154, 0, 0.5);
+}
+
+/* ===========================
+   JOIN CTA BUTTON
+   =========================== */
+.nav-cta {
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #000000;
+    background: linear-gradient(135deg, var(--neon-cyan) 0%, #0088ff 100%);
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+    border: 1px solid rgba(0, 212, 255, 0.5);
+}
+
+.nav-cta:hover {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--neon-red) 100%);
+    border-color: rgba(255, 154, 0, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(255, 154, 0, 0.7), 0 0 40px rgba(255, 77, 46, 0.3);
+    filter: brightness(1.15);
 }
 
 /* ===========================
@@ -71,7 +165,7 @@
     display: none;
     background: none;
     border: none;
-    color: var(--text-primary);
+    color: var(--neon-cyan);
     font-size: 1.5rem;
     cursor: pointer;
 }
@@ -81,7 +175,7 @@
         padding: 0 1rem;
     }
 
-    .nav-menu {
+.nav-menu {
         display: none;
         position: absolute;
         top: 70px;
@@ -89,8 +183,17 @@
         right: 0;
         flex-direction: column;
         gap: 0;
-        background-color: var(--bg-secondary);
+        background: 
+            linear-gradient(180deg, rgba(20, 20, 25, 0.95), rgba(30, 25, 20, 0.98)),
+            url('../images/herohero.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
         border-bottom: 1px solid var(--border-color);
+        padding: 0.5rem 0;
     }
 
     .nav-menu.active {
@@ -98,12 +201,13 @@
     }
 
     .nav-menu li {
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .nav-link {
         display: block;
         padding: 1rem 2rem;
+        text-align: center;
     }
 
     .nav-link.active::after {
@@ -111,7 +215,13 @@
     }
 
     .nav-link.active {
-        background-color: var(--bg-tertiary);
+        background: rgba(255, 154, 0, 0.15);
+        color: var(--accent-primary);
+    }
+
+
+    .nav-cta {
+        display: none;
     }
 
     .nav-toggle {
